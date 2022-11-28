@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
 const CaughtPokemon = (props) => {
-  // console.log(useState);
-
-  // const [caught, setCaught] = useState(0);
   const [caught, setCaught] = useState([]);
+  const [pokemonNameInput, setPokemonNameInput] = useState("");
 
-  let namesArr = ["Squirtle", "Pikachu", "Bulbasaur", "Charizard", "Geodude"];
+  // let namesArr = ["Squirtle", "Pikachu", "Bulbasaur", "Charizard", "Geodude"];
 
-  function generateRandomNum() {
-    return Math.floor(Math.random() * 5);
-  }
+  // function generateRandomNum() {
+  //   return Math.floor(Math.random() * 5);
+  // }
 
   // function catchPokemon() {
   //   setCaught((caught) => {
@@ -19,14 +17,26 @@ const CaughtPokemon = (props) => {
   // }
 
   function catchPokemon() {
-    setCaught(caught.concat(namesArr[generateRandomNum()]));
+    // setCaught(caught.concat(namesArr[generateRandomNum()]));
+    setCaught(caught.concat(pokemonNameInput));
+    setPokemonNameInput("");
   }
+
+  // function handleInputChange(event) {
+  //   setPokemonNameInput(event.target.value);
+  // }
 
   return (
     <div>
       <p>
         Caught {caught.length} Pokemon on {props.date}
       </p>
+      <input
+        type="text"
+        value={pokemonNameInput}
+        // onChange={handleInputChange}
+        onChange={(event) => setPokemonNameInput(event.target.value)}
+      />
       <button onClick={catchPokemon}>Catch Pokemon</button>
       <ul>
         {caught.map((name, index) => {
